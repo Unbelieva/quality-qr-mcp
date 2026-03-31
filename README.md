@@ -88,9 +88,9 @@ MCP tool calls count against your API rate limit. Protocol messages (`initialize
 
 | Plan | Tool Calls / Month | Analytics History | Price |
 |------|-------------------|-------------------|-------|
-| Free | 100 | 7 days | $0 |
-| Pro | 1,000 | 30 days | $10/mo |
-| Business | 10,000 | 1 year | $30/mo |
+| Free | 100 | 7 days | Free |
+| Pro | 1,000 | 30 days | €10/mo |
+| Business | 10,000 | 1 year | €30/mo |
 
 ## Security
 
