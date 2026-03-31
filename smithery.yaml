@@ -1,0 +1,14 @@
+startCommand:
+  type: http
+  url: https://quality-qr.app/api/mcp
+  configSchema:
+    type: object
+    required:
+      - apiKey
+    properties:
+      apiKey:
+        type: string
+        title: API Key
+        description: "Your Quality QR API key (starts with qr_live_). Get one at https://quality-qr.app/dashboard/settings"
+  exampleConfig:
+    apiKey: "qr_live_your_api_key_here"
