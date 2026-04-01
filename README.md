@@ -98,7 +98,7 @@ MCP tool calls count against your API rate limit. Protocol messages (`initialize
 - Keys can be revoked instantly from the dashboard
 - QR codes are scoped to your account (no cross-user access)
 - No admin, billing, or team management operations exposed
-- GDPR compliant, hosted on Cloudflare's global edge network
+- GDPR and CCPA compliant, hosted on Cloudflare's global edge network
 
 ## Links
 
