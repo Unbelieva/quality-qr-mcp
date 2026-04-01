@@ -103,6 +103,7 @@ MCP tool calls count against your API rate limit. Protocol messages (`initialize
 ## Links
 
 - [Quality QR](https://quality-qr.app)
+- [Agent Onboarding (SKILL.md)](https://quality-qr.app/agent-onboarding/SKILL.md) — step-by-step instructions for AI agents
 - [MCP Documentation](https://quality-qr.app/docs/mcp)
 - [API Documentation](https://quality-qr.app/docs/api)
 - [Pricing](https://quality-qr.app/pricing)
