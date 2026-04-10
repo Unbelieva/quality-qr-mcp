@@ -9,6 +9,6 @@ startCommand:
       apiKey:
         type: string
         title: API Key
-        description: "Your Quality QR API key (starts with qr_live_). Get one at https://quality-qr.app/dashboard/settings"
+        description: "Your Quality QR API key (starts with qr_live_). Sent as the Authorization Bearer header. Get one at https://quality-qr.app/dashboard/settings"
   exampleConfig:
     apiKey: "qr_live_your_api_key_here"
