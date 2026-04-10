@@ -14,6 +14,8 @@ Sign up at [quality-qr.app](https://quality-qr.app) and generate an API key at *
 
 ### 2. Configure Your MCP Client
 
+> **Smithery users:** If you install via [Smithery](https://smithery.ai), you'll be prompted for your `apiKey` directly — Smithery handles the `Authorization` header for you. The configs below are for manual setup.
+
 #### Claude Desktop
 
 Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on Mac):
@@ -92,6 +94,19 @@ MCP tool calls count against your API rate limit. Protocol messages (`initialize
 | Pro | 1,000 | 30 days | €10/mo |
 | Business | 10,000 | 1 year | €30/mo |
 
+### Rate-Limit Response Headers
+
+Every response includes headers to help you manage usage:
+
+| Header | Description |
+|--------|-------------|
+| `X-RateLimit-Limit` | Maximum tool calls allowed per month on your plan |
+| `X-RateLimit-Remaining` | Tool calls remaining in the current billing period |
+| `X-RateLimit-Reset` | UTC timestamp when the limit resets (ISO 8601) |
+| `Retry-After` | Seconds to wait before retrying (only present on `429` responses) |
+
+When you receive a `429 Too Many Requests` response, wait for the number of seconds specified in `Retry-After` before retrying.
+
 ## Security
 
 - All requests authenticated via API key (Bearer token)
@@ -99,6 +114,14 @@ MCP tool calls count against your API rate limit. Protocol messages (`initialize
 - QR codes are scoped to your account (no cross-user access)
 - No admin, billing, or team management operations exposed
 - GDPR and CCPA compliant, hosted on Cloudflare's global edge network
+
+### API Key Management
+
+Your API key grants full access to your QR codes and analytics. Treat it like a password.
+
+- **Rotate regularly.** Generate a new key in **Dashboard > Settings > API Keys**, update your MCP client config, then revoke the old key. You can have multiple active keys to allow zero-downtime rotation.
+- **Revoke compromised keys immediately.** Revocation takes effect instantly — any in-flight requests using the old key will fail.
+- **Restrict access to config files.** MCP client configs store your key in plaintext. On macOS/Linux, ensure only your user can read them (e.g., `chmod 600`). Avoid committing config files with real keys to version control.
 
 ## Links
 
