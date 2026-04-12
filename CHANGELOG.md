@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0.1] - 2026-04-12
+
+### Added
+- Agent onboarding SKILL.md with YAML frontmatter, decision tree routing, quick setup command, verification step, and three integration paths (MCP tools, REST API, account setup)
+
+### Changed
+- README agent onboarding link now points to hosted URL with repo source fallback
+
 ## [1.0.0.0] - 2026-04-12
 
 ### Added

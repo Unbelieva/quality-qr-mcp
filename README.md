@@ -126,7 +126,7 @@ Your API key grants full access to your QR codes and analytics. Treat it like a 
 ## Links
 
 - [Quality QR](https://quality-qr.app)
-- [Agent Onboarding (SKILL.md)](https://quality-qr.app/agent-onboarding/SKILL.md) — step-by-step instructions for AI agents
+- [Agent Onboarding (SKILL.md)](https://quality-qr.app/agent-onboarding/SKILL.md) — step-by-step instructions for AI agents to use Quality QR autonomously ([source](SKILL.md))
 - [MCP Documentation](https://quality-qr.app/docs/mcp)
 - [API Documentation](https://quality-qr.app/docs/api)
 - [Pricing](https://quality-qr.app/pricing)
