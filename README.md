@@ -1,5 +1,11 @@
 # Quality QR MCP Server
 
+[![Validate manifests](https://github.com/silly-geese/quality-qr-mcp/actions/workflows/validate.yml/badge.svg)](https://github.com/silly-geese/quality-qr-mcp/actions/workflows/validate.yml)
+[![Smithery](https://smithery.ai/badge/quality-qr/qr-code-mcp)](https://smithery.ai/server/quality-qr/qr-code-mcp)
+[![MCP](https://img.shields.io/badge/MCP-streamable--http-7c3aed.svg)](https://modelcontextprotocol.io)
+[![Protocol](https://img.shields.io/badge/protocol-2025--03--26-blue.svg)](https://modelcontextprotocol.io/specification)
+[![License](https://img.shields.io/badge/license-proprietary-lightgrey.svg)](LICENSE)
+
 Create and manage trackable QR codes through AI assistants like Claude, Cursor, and any MCP-compatible tool.
 
 Unlike generic QR code generators, Quality QR codes are **saved to your account** with scan tracking, analytics, and the ability to update destinations without reprinting.
@@ -14,7 +20,7 @@ Sign up at [quality-qr.app](https://quality-qr.app) and generate an API key at *
 
 ### 2. Configure Your MCP Client
 
-> **Smithery users:** If you install via [Smithery](https://smithery.ai), you'll be prompted for your `apiKey` directly — Smithery handles the `Authorization` header for you. The configs below are for manual setup.
+> **Smithery users:** If you install via [Smithery](https://smithery.ai/server/quality-qr/qr-code-mcp), you'll be prompted for your `apiKey` directly — Smithery handles the `Authorization` header for you. The configs below are for manual setup.
 
 #### Claude Desktop
 
@@ -114,6 +120,7 @@ When you receive a `429 Too Many Requests` response, wait for the number of seco
 - QR codes are scoped to your account (no cross-user access)
 - No admin, billing, or team management operations exposed
 - GDPR and CCPA compliant, hosted on Cloudflare's global edge network
+- See [SECURITY.md](SECURITY.md) to report a vulnerability, and [PRIVACY.md](PRIVACY.md) for data handling details
 
 ### API Key Management
 
