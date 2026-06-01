@@ -1,0 +1,74 @@
+name: Validate manifests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validators
+        run: pip install --quiet check-jsonschema "ruamel.yaml>=0.18"
+
+      - name: Validate JSON syntax
+        run: |
+          set -e
+          for f in $(find . -name '*.json' -not -path './.git/*'); do
+            echo "Checking $f"
+            python -c "import json,sys; json.load(open(sys.argv[1]))" "$f"
+          done
+
+      - name: Validate YAML syntax
+        run: |
+          set -e
+          for f in $(find . \( -name '*.yml' -o -name '*.yaml' \) -not -path './.git/*'); do
+            echo "Checking $f"
+            python -c "from ruamel.yaml import YAML; YAML(typ='safe').load(open('$f'))"
+          done
+
+      - name: Validate server.json against MCP registry schema
+        run: |
+          check-jsonschema \
+            --schemafile https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json \
+            server.json
+
+      - name: Check smithery.yaml shape
+        run: |
+          python <<'PY'
+          from ruamel.yaml import YAML
+          y = YAML(typ='safe').load(open('smithery.yaml'))
+          sc = y.get('startCommand') or {}
+          assert sc.get('type') == 'http', "startCommand.type must be 'http'"
+          assert sc.get('url', '').startswith('https://'), "startCommand.url must be https"
+          cfg = sc.get('configSchema') or {}
+          assert cfg.get('type') == 'object', "configSchema.type must be 'object'"
+          assert 'apiKey' in (cfg.get('properties') or {}), "configSchema must declare apiKey property"
+          assert 'apiKey' in (cfg.get('required') or []), "apiKey must be required"
+          print("smithery.yaml OK")
+          PY
+
+      - name: Cross-check version consistency
+        run: |
+          python <<'PY'
+          import json, re
+          version_file = open('VERSION').read().strip()
+          server_json = json.load(open('server.json'))
+          server_version = server_json['version']
+          # VERSION may have a build suffix (1.0.0.1) that server.json doesn't (1.0.0).
+          # Require that server.json version is a prefix of VERSION.
+          assert version_file.startswith(server_version), (
+              f"VERSION ({version_file}) must start with server.json version ({server_version})"
+          )
+          print(f"VERSION={version_file} server.json={server_version} OK")
+          PY
